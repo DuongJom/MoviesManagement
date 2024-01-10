@@ -3,13 +3,12 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace MoviesManagement.Models
 {
-    public class Time : BaseModel
+    public class Actor : BaseModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public Guid Id { get; set; } = Guid.NewGuid();
-        public required int Hours { get; set; }
-        public required int Minutes { get; set; }
-        public required int Seconds { get; set; }
+        public required string Name { get; set; }
+        public required bool Gender { get; set; }
     }
 }

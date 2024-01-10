@@ -7,7 +7,7 @@ namespace MoviesManagement.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public required string Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public required string SpecializeName { get; set; }
     }

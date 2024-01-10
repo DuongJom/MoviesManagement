@@ -1,5 +1,7 @@
 using MongoDB.Driver;
 using MoviesManagement.Models;
+using MoviesManagement.Repositories.Accounts;
+using MoviesManagement.Services.Accounts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddSingleton<IMongoClient>(_ =>
     var connectionStr = builder.Configuration.GetSection("DBSetting:ConnectionString").Value;
     return new MongoClient(connectionStr);
 });
+builder.Services.AddSingleton<IAccountService, AccountService>();
+builder.Services.AddSingleton<IAccountRepository, AccountRepository>();
 
 var app = builder.Build();
 
@@ -27,10 +31,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "Account",
+    pattern: "{controller=Account}/{action=Create}");
 
 app.Run();
