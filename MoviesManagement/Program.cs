@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.Configure<DBSetting>(builder.Configuration.GetSection("DbSetting"));
 builder.Services.AddSingleton<IMongoClient>(_ =>
 {
-    var connectionStr = builder.Configuration.GetSection("DBSetting:ConnectionString").Value;
+    var connectionStr = builder.Configuration.GetSection("DbSetting:ConnectionString").Value;
     return new MongoClient(connectionStr);
 });
 builder.Services.AddSingleton<IAccountService, AccountService>();

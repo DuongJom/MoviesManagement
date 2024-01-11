@@ -5,9 +5,6 @@ namespace MoviesManagement.Models
 {
     public class User : BaseModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; set; } = Guid.NewGuid();
         public required string Name { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }

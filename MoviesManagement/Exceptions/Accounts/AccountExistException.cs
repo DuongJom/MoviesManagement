@@ -2,8 +2,6 @@
 {
     public class AccountExistException : Exception
     {
-        public AccountExistException(string message) {
-            throw new Exception(message);
-        }
+        public AccountExistException(string message) : base(message) { }
     }
 }

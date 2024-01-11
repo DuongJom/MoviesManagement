@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using MoviesManagement.Exceptions.Accounts;
 using MoviesManagement.Models;
 
@@ -6,15 +7,14 @@ namespace MoviesManagement.Repositories.Accounts
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly IMongoClient _client;
         private readonly IMongoCollection<Account> _accounts;
 
-        public AccountRepository(IMongoDatabase database, IMongoClient mongoClient)
+        public AccountRepository(IOptions<DBSetting> settings, IMongoClient mongoClient)
         {
-            _client = mongoClient;
+            var database = mongoClient.GetDatabase(settings.Value.DatabaseName);
             _accounts = database.GetCollection<Account>("accounts");
         }
-        public bool DeleteAccount(Guid? accountId)
+        public bool DeleteAccount(string? accountId)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace MoviesManagement.Repositories.Accounts
             return await _accounts.Find(filter).ToListAsync();
         }
 
-        public async Task<Account> GetAccountById(Guid? id)
+        public async Task<Account> GetAccountById(string? id)
         {
             return await _accounts.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
@@ -59,16 +59,16 @@ namespace MoviesManagement.Repositories.Accounts
 
         public void CreateAccount(Account account)
         {
-            var acc = _accounts.Find(x => x.UserName == account.UserName && x.Password == account.Password);
+            var acc = _accounts.Find(x => x.UserName == account.UserName && x.Password == account.Password).FirstOrDefault();
             if (acc != null)
             {
                 throw new AccountExistException($"Account with username={account.UserName} already exist!");
             }
 
-            _accounts.InsertOneAsync(account);
+            _accounts.InsertOne(account);
         }
 
-        public bool UpdateAccount(Guid? accountId, Account updateAccount)
+        public bool UpdateAccount(string? accountId, Account updateAccount)
         {
             if (accountId == null)
             {

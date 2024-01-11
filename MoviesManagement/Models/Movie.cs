@@ -5,9 +5,6 @@ namespace MoviesManagement.Models
 {
     public class Movie : BaseModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; set; } = Guid.NewGuid();
         public required string MovieName { get; set; }
         public required string Url { get; set; }
 

@@ -5,9 +5,6 @@ namespace MoviesManagement.Models
 {
     public class Address : BaseModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; set; } = Guid.NewGuid();
         public string? StreetNo { get; set; }
         public string? StreetName { get; set; }
         public string? District { get; set; }

@@ -12,7 +12,7 @@ namespace MoviesManagement.Services.Accounts
             _accountRepository = accountRepository;
         }
 
-        public bool DeleteAccount(Guid accountId)
+        public bool DeleteAccount(string? accountId)
         {
             return _accountRepository.DeleteAccount(accountId);
         }
@@ -22,7 +22,7 @@ namespace MoviesManagement.Services.Accounts
             return _accountRepository.Filter(filter);
         }
 
-        public Task<Account> GetAccountById(Guid id)
+        public Task<Account> GetAccountById(string? id)
         {
             return _accountRepository.GetAccountById(id);
         }
@@ -42,7 +42,7 @@ namespace MoviesManagement.Services.Accounts
             _accountRepository.CreateAccount(account);
         }
 
-        public bool UpdateAccount(Guid accountId, Account updateAccount)
+        public bool UpdateAccount(string? accountId, Account updateAccount)
         {
             return _accountRepository.UpdateAccount(accountId, updateAccount);
         }
