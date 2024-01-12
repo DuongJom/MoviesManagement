@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MoviesManagement.Models.Account>
+
+@{
+    ViewData["Title"] = "List of Accounts";
+    Layout = "_Layout.cshtml";
+    var acc = Model.First();
+}
+
+<table>
+    <tr>
+        <th>@acc.Id</th>
+        <th>@acc.UserName</th>
+        <th>@acc.Password</th>
+    </tr>
+    @foreach(Account account in Model)
+    {
+        <tr>
+            <td>@account.Id</td>
+            <td>@account.UserName</td>
+            <td>@account.Password</td>
+        </tr>
+    }
+</table>
