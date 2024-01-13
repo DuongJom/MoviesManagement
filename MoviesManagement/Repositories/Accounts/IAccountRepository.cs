@@ -4,11 +4,11 @@ namespace MoviesManagement.Repositories.Accounts
 {
     public interface IAccountRepository
     {
-        Task<List<Account>> GetAllAccounts();
-        Task<Account> GetAccountById(string? id);
-        Task<List<Account>> Filter(string filter);
-        bool UpdateAccount(string? accountId, Account updateAccount);
-        bool DeleteAccount(string? accountId);
+        List<Account> GetAllAccounts();
+        Account GetAccountById(long? id);
+        List<Account> Filter(string filter);
+        bool UpdateAccount(long? accountId, Account updateAccount);
+        bool DeleteAccount(long? accountId);
         void CheckAuthentication(Account account);
         void CreateAccount(Account account);
     }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MoviesManagement.Exceptions.Accounts;
 using MoviesManagement.Models;
 using MoviesManagement.Services.Accounts;
 
@@ -16,23 +15,32 @@ namespace MoviesManagement.Controllers
 
         public IActionResult Index()
         {
+            var accounts = _accountService.GetAllAccounts();
+            return View(accounts);
+        }
+
+        public IActionResult SignUp()
+        {
             return View();
         }
 
-        public void Create()
+        [HttpPost]
+        public IActionResult SignUp(Account account)
         {
             try
             {
-                _accountService.SignUp(new Account()
+                if(!ModelState.IsValid)
                 {
-                    UserName = "admin",
-                    Password = "admin123@"
-                });
-            }
-            catch(AccountExistException ex) 
-            {
+                    return View();
+                }
 
+                _accountService.SignUp(account);
             }
+            catch (Exception)
+            {
+                return View();
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

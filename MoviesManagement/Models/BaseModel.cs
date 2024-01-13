@@ -6,8 +6,8 @@ namespace MoviesManagement.Models
     public class BaseModel
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
+        [BsonRepresentation(BsonType.Int64)]
+        public long Id { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public User? CreateBy { get; set; } = Utils.CurrentUser;
         public DateTime ModifiedDate { get; set; } = DateTime.Now;

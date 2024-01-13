@@ -2,22 +2,27 @@
 
 @{
     ViewData["Title"] = "List of Accounts";
-    Layout = "_Layout.cshtml";
-    var acc = Model.First();
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table>
-    <tr>
-        <th>@acc.Id</th>
-        <th>@acc.UserName</th>
-        <th>@acc.Password</th>
-    </tr>
-    @foreach(Account account in Model)
-    {
-        <tr>
-            <td>@account.Id</td>
-            <td>@account.UserName</td>
-            <td>@account.Password</td>
-        </tr>
-    }
-</table>
+<div class="flex justify-center">
+    <table class="w-75 text-md text-left rtl:text-right text-gray-500 dark:text-gray-400 table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">UserName</th>
+                <th class="text-center">Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Account account in Model)
+            {
+                <tr class="odd:bg-gray-100">
+                    <td>@account.Id</td>
+                    <td>@account.UserName</td>
+                    <td>@account.Password</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

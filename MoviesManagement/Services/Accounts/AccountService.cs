@@ -12,22 +12,22 @@ namespace MoviesManagement.Services.Accounts
             _accountRepository = accountRepository;
         }
 
-        public bool DeleteAccount(string? accountId)
+        public bool DeleteAccount(long? accountId)
         {
             return _accountRepository.DeleteAccount(accountId);
         }
 
-        public Task<List<Account>> Filter(string filter)
+        public List<Account> Filter(string filter)
         {
             return _accountRepository.Filter(filter);
         }
 
-        public Task<Account> GetAccountById(string? id)
+        public Account GetAccountById(long? id)
         {
             return _accountRepository.GetAccountById(id);
         }
 
-        public Task<List<Account>> GetAllAccounts()
+        public List<Account> GetAllAccounts()
         {
             return _accountRepository.GetAllAccounts();
         }
@@ -42,7 +42,7 @@ namespace MoviesManagement.Services.Accounts
             _accountRepository.CreateAccount(account);
         }
 
-        public bool UpdateAccount(string? accountId, Account updateAccount)
+        public bool UpdateAccount(long? accountId, Account updateAccount)
         {
             return _accountRepository.UpdateAccount(accountId, updateAccount);
         }

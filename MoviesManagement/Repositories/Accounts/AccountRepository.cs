@@ -14,7 +14,7 @@ namespace MoviesManagement.Repositories.Accounts
             var database = mongoClient.GetDatabase(settings.Value.DatabaseName);
             _accounts = database.GetCollection<Account>("accounts");
         }
-        public bool DeleteAccount(string? accountId)
+        public bool DeleteAccount(long? accountId)
         {
             try
             {
@@ -32,20 +32,20 @@ namespace MoviesManagement.Repositories.Accounts
             return true;
         }
 
-        public async Task<List<Account>> Filter(string filterValue)
+        public List<Account> Filter(string filterValue)
         {
             var filter = Builders<Account>.Filter.Eq("UserName", filterValue);
-            return await _accounts.Find(filter).ToListAsync();
+            return _accounts.Find(filter).ToList();
         }
 
-        public async Task<Account> GetAccountById(string? id)
+        public Account GetAccountById(long? id)
         {
-            return await _accounts.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return _accounts.Find(x => x.Id == id).FirstOrDefault();
         }
 
-        public async Task<List<Account>> GetAllAccounts()
+        public List<Account> GetAllAccounts()
         {
-            return await _accounts.Find(x => true).ToListAsync();
+            return _accounts.Find(x => true).ToList();
         }
 
         public void CheckAuthentication(Account account)
@@ -65,10 +65,10 @@ namespace MoviesManagement.Repositories.Accounts
                 throw new AccountExistException($"Account with username={account.UserName} already exist!");
             }
 
-            _accounts.InsertOne(account);
+            _accounts.InsertOneAsync(account);
         }
 
-        public bool UpdateAccount(string? accountId, Account updateAccount)
+        public bool UpdateAccount(long? accountId, Account updateAccount)
         {
             if (accountId == null)
             {

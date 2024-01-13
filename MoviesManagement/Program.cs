@@ -39,6 +39,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "Account",
-    pattern: "{controller=Account}/{action=Create}");
+    pattern: "{controller=Account}/{action=Index}");
+app.MapControllerRoute(
+    name: "Account",
+    pattern: "{controller=Account}/{action=SignUp}");
 
 app.Run();
