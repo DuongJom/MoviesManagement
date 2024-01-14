@@ -22,6 +22,11 @@ namespace MoviesManagement.Services.Accounts
             return _accountRepository.Filter(filter);
         }
 
+        public Account? GetAccountByEmail(string? email)
+        {
+            return _accountRepository.GetAccountByEmail(email);
+        }
+
         public Account GetAccountById(long? id)
         {
             return _accountRepository.GetAccountById(id);
@@ -35,6 +40,11 @@ namespace MoviesManagement.Services.Accounts
         public bool Login(Account account)
         {
             return _accountRepository.CheckAuthentication(account);
+        }
+
+        public void ResetPassword(long? accountId, string? newPassword)
+        {
+            _accountRepository.ResetPassword(accountId, newPassword);
         }
 
         public bool SignUp(Account account)

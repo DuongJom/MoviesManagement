@@ -1,4 +1,5 @@
 using MongoDB.Driver;
+using MoviesManagement;
 using MoviesManagement.Models;
 using MoviesManagement.Repositories.Accounts;
 using MoviesManagement.Services.Accounts;
@@ -43,6 +44,12 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "Account",
     pattern: "{controller=Account}/{action=SignUp}");
+app.MapControllerRoute(
+    name: "Account",
+    pattern: "{controller=Account}/{action=ForgotPassword}");
+app.MapControllerRoute(
+    name: "Account",
+    pattern: "{controller=Account}/{action=ChangePassword}");
 app.MapControllerRoute(
     name: "Home",
     pattern: "{controller=Home}/{action=Index}");

@@ -7,11 +7,13 @@ namespace MoviesManagement.Repositories.Accounts
     public class AccountRepository : IAccountRepository
     {
         private readonly IMongoCollection<Account> _accounts;
+        private readonly IMongoCollection<User> _users;
 
         public AccountRepository(IOptions<DBSetting> settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.Value.DatabaseName);
             _accounts = database.GetCollection<Account>("accounts");
+            _users = database.GetCollection<User>("users");
         }
 
         public bool DeleteAccount(long? accountId)
@@ -95,6 +97,30 @@ namespace MoviesManagement.Repositories.Accounts
             }
             
             return true;
+        }
+
+        public void ResetPassword(long? accountId, string? newPassword)
+        {
+            var account = GetAccountById(accountId);
+            if(account != null)
+            {
+                account.Password = newPassword;
+                _accounts.FindOneAndReplaceAsync(x => x.Id == accountId, account);
+            }
+        }
+
+        public Account? GetAccountByEmail(string? email)
+        {
+            //Get all users from database
+            var users = _users.Find(x => true).ToList();
+            foreach (var user in users)
+            {
+                if (user.Email == email)
+                {
+                    return _accounts.Find(x => x.Id == user.AccountId).FirstOrDefault();
+                }
+            }
+            return null;
         }
     }
 }

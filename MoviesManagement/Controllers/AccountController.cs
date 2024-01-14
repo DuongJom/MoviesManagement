@@ -57,5 +57,62 @@ namespace MoviesManagement.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult ChangePassword(long? id, string? email = null)
+        {
+            Account? account;
+            if(email == null)
+            {
+                account = _accountService.GetAccountById(id);
+            }
+            else
+            {
+                account = _accountService.GetAccountByEmail(email);
+            }
+            
+            return View(account);
+        }
+
+        [HttpPut]
+        public IActionResult ChangePassword(long? id, Account account)
+        {
+            if (id != account.Id || !account.Password.Equals(account.ConfirmPassword))
+            {
+                return View();
+            }
+
+            _accountService.ResetPassword(id, account.NewPassword);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteAccount(long? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+
+            _accountService.DeleteAccount(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ForgotPassword(string? email)
+        {
+            var acc = _accountService.GetAccountByEmail(email);
+            if(acc == null)
+            {
+                ModelState.AddModelError("Email", "Email doesn't exist.");
+                return View();
+            }
+
+            return View(nameof(ChangePassword));
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace MoviesManagement.Repositories.Accounts
         bool DeleteAccount(long? accountId);
         bool CheckAuthentication(Account account);
         bool CreateAccount(Account account);
+        void ResetPassword(long? accountId, string? newPassword);
+        Account? GetAccountByEmail(string? email);
     }
 }

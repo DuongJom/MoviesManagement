@@ -11,5 +11,7 @@ namespace MoviesManagement.Services.Accounts
         bool DeleteAccount(long? accountId);
         bool Login(Account account);
         bool SignUp(Account account);
+        void ResetPassword(long? accountId, string? newPassword);
+        Account? GetAccountByEmail(string? email);
     }
 }
