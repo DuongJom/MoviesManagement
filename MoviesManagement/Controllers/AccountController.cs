@@ -27,19 +27,12 @@ namespace MoviesManagement.Controllers
         [HttpPost]
         public IActionResult SignUp(Account account)
         {
-            try
-            {
-                if(!ModelState.IsValid)
-                {
-                    return View();
-                }
-
-                _accountService.SignUp(account);
-            }
-            catch (Exception)
+            if (!ModelState.IsValid)
             {
                 return View();
             }
+            _accountService.SignUp(account);
+
             return RedirectToAction(nameof(Index));
         }
     }

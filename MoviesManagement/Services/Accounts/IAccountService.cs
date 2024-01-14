@@ -9,7 +9,7 @@ namespace MoviesManagement.Services.Accounts
         List<Account> Filter(string filter);
         bool UpdateAccount(long? accountId, Account updateAccount);
         bool DeleteAccount(long? accountId);
-        void Login(Account account);
-        void SignUp(Account account);
+        bool Login(Account account);
+        bool SignUp(Account account);
     }
 }

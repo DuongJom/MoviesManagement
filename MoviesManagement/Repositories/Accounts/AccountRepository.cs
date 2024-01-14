@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using MoviesManagement.Exceptions.Accounts;
 using MoviesManagement.Models;
 
 namespace MoviesManagement.Repositories.Accounts
@@ -14,6 +13,7 @@ namespace MoviesManagement.Repositories.Accounts
             var database = mongoClient.GetDatabase(settings.Value.DatabaseName);
             _accounts = database.GetCollection<Account>("accounts");
         }
+
         public bool DeleteAccount(long? accountId)
         {
             try
@@ -48,34 +48,52 @@ namespace MoviesManagement.Repositories.Accounts
             return _accounts.Find(x => true).ToList();
         }
 
-        public void CheckAuthentication(Account account)
+        public bool CheckAuthentication(Account account)
         {
             var acc = _accounts.Find(x => x.UserName == account.UserName && x.Password == account.Password);
             if (acc == null)
             {
-                throw new InvalidAccountException("Invalid account!");
+                return false;
             }
+            return true;
         }
 
-        public void CreateAccount(Account account)
+        public bool CreateAccount(Account account)
         {
-            var acc = _accounts.Find(x => x.UserName == account.UserName && x.Password == account.Password).FirstOrDefault();
-            if (acc != null)
+            try
             {
-                throw new AccountExistException($"Account with username={account.UserName} already exist!");
-            }
+                var acc = _accounts.Find(x => x.UserName == account.UserName && x.Password == account.Password).FirstOrDefault();
+                if (acc != null)
+                {
+                    return false;
+                }
 
-            _accounts.InsertOneAsync(account);
+                _accounts.InsertOneAsync(account);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
+            return true;
         }
 
         public bool UpdateAccount(long? accountId, Account updateAccount)
         {
-            if (accountId == null)
+            try
+            {
+                if (accountId == null)
+                {
+                    return false;
+                }
+
+                _accounts.FindOneAndReplaceAsync(x => x.Id == accountId, updateAccount);
+            }
+            catch (Exception)
             {
                 return false;
             }
-
-            _accounts.FindOneAndReplaceAsync(x => x.Id == accountId, updateAccount);
+            
             return true;
         }
     }

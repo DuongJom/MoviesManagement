@@ -32,14 +32,14 @@ namespace MoviesManagement.Services.Accounts
             return _accountRepository.GetAllAccounts();
         }
 
-        public void Login(Account account)
+        public bool Login(Account account)
         {
-            _accountRepository.CheckAuthentication(account);
+            return _accountRepository.CheckAuthentication(account);
         }
 
-        public void SignUp(Account account)
+        public bool SignUp(Account account)
         {
-            _accountRepository.CreateAccount(account);
+            return _accountRepository.CreateAccount(account);
         }
 
         public bool UpdateAccount(long? accountId, Account updateAccount)
