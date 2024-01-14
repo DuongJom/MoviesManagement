@@ -35,5 +35,27 @@ namespace MoviesManagement.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(Account account)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var result = _accountService.Login(account);
+            if (!result)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
