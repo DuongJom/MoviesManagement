@@ -10,3 +10,4 @@ Công nghệ sử dụng trong project:<br/>
   + JavaScript<br/>
   + Bootstrap<br/>
 - Source control: các lệnh dùng trong GitHub
+- IDE Development: Visual studio 2019/2022
