@@ -5,93 +5,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="flex h-screen w-full align-items-center justify-center">
-    <!-- Left column container with background-->
-    <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
-        <div class="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
-            <img src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                 class="w-full"
-                 alt="Sample image" />
-        </div>
-
-        <!-- Right column container -->
-        <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-            <form asp-action="Login" method="post">
-                <!--Sign in section-->
-                <div class="flex flex-row items-center justify-center lg:justify-start">
-                    <p class="mb-0 mr-4 text-lg">Login with</p>
-
-                    <!-- Facebook -->
-                    <button type="button"
-                            data-te-ripple-init
-                            data-te-ripple-color="light"
-                            class="mx-1 h-9 w-9 rounded-full bg-primary uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                        <!-- Facebook -->
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             class="mx-auto h-3.5 w-3.5"
-                             fill="currentColor"
-                             viewBox="0 0 24 24">
-                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Separator between social media sign in and email/password sign in -->
-                <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-                    <p class="mx-4 mb-0 text-center font-semibold dark:text-white">
-                        Or
-                    </p>
-                </div>
-
-                <!-- Username input -->
-                <div class="relative mb-6" data-te-input-wrapper-init>
-                    <input type="text"
-                           class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                           id="exampleFormControlInput2"
-                           asp-for="UserName"/>
-                    <label for="exampleFormControlInput2"
-                           class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                        Username
-                    </label>
-                </div>
-
-                <!-- Password input -->
-                <div class="relative mb-6" data-te-input-wrapper-init>
-                    <input type="password"
-                           class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                           id="exampleFormControlInput22"
-                           asp-for="Password"/>
-                    <label for="exampleFormControlInput22"
-                           class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                        Password
-                    </label>
-                </div>
-
-                <div class="mb-6 flex items-center justify-between">
-                    <!-- Remember me checkbox -->
-                    <div class="flex items-center">
-                        <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+<div
+	class="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 
+            to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden">
+	
+</div>
+<div class="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl">
+	<div class="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
+		<div class="self-start hidden lg:flex flex-col  text-gray-300">
+			<h1 class="my-3 font-semibold text-4xl">Welcome back</h1>
+			<p class="pr-3 text-sm opacity-75">
+                Lorem ipsum is placeholder text commonly used in the graphic, print,
+				and publishing industries for previewing layouts and visual mockups
+            </p>
+		</div>
+	</div>
+	<div class="flex justify-center self-center z-10">
+		<div class="p-12 bg-white mx-auto rounded-3xl w-96 ">
+			<div class="mb-7">
+				<h3 class="font-semibold text-2xl text-gray-800">Sign In </h3>
+				<p class="text-gray-400">
+                    Don'thave an account? 
+                    <a asp-action="SignUp" class="text-sm text-purple-700 hover:text-purple-700">
+                        Sign Up
+                    </a>
+                </p>
+			</div>
+			<div class="space-y-6">
+                <form asp-action="Login" method="post">
+                    <div>
+                        <input class="w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border
+                                border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
+                               type="text" placeholder="Username" asp-for="UserName" />
                     </div>
-                    <!--Forgot password link-->
-                    <a asp-action="ForgotPassword" class="text-blue-500">Forgot password?</a>
-                </div>
-
-                <!-- Login button -->
-                <div class="text-center lg:text-left">
-                    <input type="submit"
-                            class="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                            data-te-ripple-init
-                            data-te-ripple-color="light" value="Login"/>
-
-                    <!-- Register link -->
-                    <p class="mb-0 mt-2 pt-1 text-sm font-semibold">
-                        Don't have an account?
-                        <a asp-action="SignUp"
-                           class="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700">Sign Up</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-    </div>
+                    <div class="relative mt-2 mb-2 h-25" x-data="{ show: true }">
+                        <input placeholder="Password" type="password" asp-for="Password"
+                               class="text-md text-blue-700 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border
+                            border-gray-200 focus:outline-none focus:border-purple-400 h-full">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm ml-auto">
+                            <a href="#" class="text-purple-700 hover:text-purple-600">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" asp-action="Login"
+                               class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3
+                        rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500" value="Sign in">
+                    </div>
+                    <div class="flex items-center justify-center space-x-2 my-5">
+                        <span class="h-px w-16 bg-gray-100"></span>
+                        <span class="text-black font-normal">or</span>
+                        <span class="h-px w-16 bg-gray-100"></span>
+                    </div>
+                    <div class="flex justify-center gap-5 w-full ">
+                        <button type="submit"
+                                class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300
+                                hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg
+                                tracking-wide font-medium  cursor-pointer transition ease-in duration-500">
+                            <svg class="w-4 mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91
+                                  3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z" />
+                                <path fill="#34A853" d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04
+                                    3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z" />
+                                <path fill="#4A90E2" d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317
+                                    1.559-1.17 2.766-2.395 3.558L19.834 21Z" />
+                                <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934
+                                    11.934 0 0 0 0 12c0 1.92.445 3.73 1.237 5.335l4.04-3.067Z" />
+                            </svg>
+                            <span>Google</span>
+                        </button>
+                        <button type="submit"
+                                class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300
+                            hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg
+                            tracking-wide font-medium  cursor-pointer transition ease-in duration-500 px-">
+                            <svg class="w-4 mr-2" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100"
+                                 xml:space="preserve" xmlns="http://www.w3.org/2000/svg" />
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+	    </div>
+	</div>
 </div>
