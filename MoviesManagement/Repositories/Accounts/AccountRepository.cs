@@ -102,7 +102,7 @@ namespace MoviesManagement.Repositories.Accounts
         public void ResetPassword(long? accountId, string? newPassword)
         {
             var account = GetAccountById(accountId);
-            if(account != null)
+            if(account != null && newPassword != null)
             {
                 account.Password = newPassword;
                 _accounts.FindOneAndReplaceAsync(x => x.Id == accountId, account);

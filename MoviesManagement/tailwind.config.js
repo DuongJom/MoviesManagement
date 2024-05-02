@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
-  theme: {
-      extend: {},
-  },
-    plugins: [
-        require('@tailwindcss/custom-forms')
+    content: [
+        './Views/**/*.cshtml'
     ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 }
 
