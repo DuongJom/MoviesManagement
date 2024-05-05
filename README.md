@@ -8,6 +8,5 @@ Công nghệ sử dụng trong project:<br/>
   + HTML<br/>
   + Tailwind CSS<br/>
   + JavaScript<br/>
-  + Bootstrap<br/>
 - <b>Source control:</b> các lệnh dùng trong GitHub
 - <b>IDE Development:</b> Visual studio 2019/2022
